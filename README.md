@@ -36,3 +36,8 @@
 0. ```heat dir ..\mco -gg -sfrag -template fragment -ke -cg Tarball -dr ProgramFilesFolder -out files.wxs```
 0. ```candle files.wxs ..\wxs\mcollective.wxs```
 0. ```light -b ..\mco files.wixobj mcollective.wixobj -out ..\msi\mcollective-2.5.001.msi```
+
+
+## Versioning
+
+Due to idiosyncrasies and limitations of the Windows Installer around upgrades, the version numbers here reflect the upstream MCollective major and minor version number accurately. The patch number is then first multiplied by 1000 and my own release number added afterwards. Therefore, 2.5.0001 here means 2.5.0 release 1.
