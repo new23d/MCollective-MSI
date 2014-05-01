@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='utf-8'?>
 <Wix xmlns='http://schemas.microsoft.com/wix/2006/wi'>
-	<Product Name='MCollective' Version='2.5.0002' Id='*' UpgradeCode='D1B7E318-BED6-430C-9194-9427BEA29797' Language='1033' Codepage='1252' Manufacturer='new23d'>
+	<Product Name='MCollective' Version='2.5.0001' Id='*' UpgradeCode='D1B7E318-BED6-430C-9194-9427BEA29797' Language='1033' Codepage='1252' Manufacturer='new23d'>
 		<Package Id='*' Compressed='yes' InstallerVersion='400' />
 		<Media Id='1' Cabinet='mcollective' EmbedCab='yes' />
 
