@@ -1,6 +1,9 @@
 # MCollective-MSI
 
 
+You could download a package I have compiled from the releases tab here, or build one yourself using instructions below.
+
+
 ## Usage
 
 
