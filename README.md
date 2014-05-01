@@ -16,7 +16,7 @@ You could download a package I have compiled from the _release_ tab above, or bu
 ## Prerequisites
 
 
-0. Puppet MSI from Puppet Labs installed. Tested with versions 3.3.2 and 3.4.3 .
+0. Puppet MSI from Puppet Labs installed. Tested with versions 3.3.2 and 3.4.3 . This setup [and the Windows Service] is configured to piggyback on the Gems and Ruby environment provided by the Puppet installation.
 
 
 ## Known Issues
