@@ -1,13 +1,13 @@
 <?xml version='1.0' encoding='utf-8'?>
 <Wix xmlns='http://schemas.microsoft.com/wix/2006/wi'>
-	<Product Name='MCollective' Version='2.5.0002' Id='*' UpgradeCode='D1B7E318-BED6-430C-9194-9427BEA29797' Language='1033' Codepage='1252' Manufacturer='new23d'>
-		<Package Id='*' Compressed='yes' InstallerVersion='400' />
+	<Product Name='MCollective' Version='2.5.0003' Id='*' UpgradeCode='D1B7E318-BED6-430C-9194-9427BEA29797' Language='1033' Codepage='1252' Manufacturer='new23d'>
+		<Package Id='*' Compressed='yes' InstallerVersion='300' />
 		<Media Id='1' Cabinet='mcollective' EmbedCab='yes' />
 
 		<MajorUpgrade DowngradeErrorMessage='A later version of MCollective is already installed. Setup will now exit.' />
 
 		<Property Id='PUPPETLABSINSTALLED'>
-			<RegistrySearch Id='PuppetLabsRememberedInstallDir' Type='raw' Root='HKLM' Key='SOFTWARE\Wow6432Node\Puppet Labs\Puppet' Name='RememberedInstallDir' />
+			<RegistrySearch Id='PuppetLabsRememberedInstallDir' Type='raw' Root='HKLM' Key='SOFTWARE\Puppet Labs\Puppet' Name='RememberedInstallDir' Win64='no' />
 		</Property>
 
 		<Condition Message='Puppet from Puppet Labs is a requirement.'>
@@ -25,7 +25,6 @@
 						</Component>
 						<Component Id='FacterCEF' Guid='816A2919-0BFD-41C1-A231-89D53690981C'>
 							<File Source='..\opt\facter_cef.rb' />
-							<File Source='..\opt\Facter_CEF.xml' />
 							<File Source='..\opt\facter_cef.bat' />
 						</Component>
 					</Directory>
@@ -59,7 +58,7 @@
 			</Directory>
 		</Directory>
 
-		<CustomAction Id='FacterCEFScheduledTaskCreate' Directory='Opt' ExeCommand='schtasks /create /f /xml ..\opt\Facter_CEF.xml /tn Facter_CEF' Execute='deferred' Impersonate='no' />
+		<CustomAction Id='FacterCEFScheduledTaskCreate' Directory='Opt' ExeCommand='schtasks /create /ru system /sc daily /tn Facter_CEF /tr "%ProgramFiles(x86)%\MCollective\opt\facter_cef.bat" /ri 10 /f' Execute='deferred' Impersonate='no' />
 		<CustomAction Id='FacterCEFScheduledTaskDelete' Directory='Log' ExeCommand='schtasks /delete /f /tn Facter_CEF' Execute='commit' Impersonate='no' />
 
 		<InstallExecuteSequence>

@@ -6,12 +6,14 @@ set var_puppet_value_name="RememberedInstallDir"
 
 for /f "usebackq skip=1 tokens=1,2*" %%a in (`reg query %var_puppet_key_name% /v %var_puppet_value_name%`) do (set var_puppet_base_dir=%%c)
 
+if defined ProgramData (set var_platform_program_data=%ProgramData%) else (set var_platform_program_data=%ALLUSERSPROFILE%\Application Data)
+
 set var_mcollective_base_dir=%ProgramFiles(x86)%\MCollective\
-set var_mcollective_etc_dir=%ProgramData%\MCollective\etc\
+set var_mcollective_etc_dir=%var_platform_program_data%\MCollective\etc\
 
 set var_programfilesx86_dir=%ProgramFiles(x86)%
 
-if not exist %ProgramData%\MCollective\etc\server.cfg (
+if not exist "%var_mcollective_etc_dir%server.cfg" (
 echo ^
 main_collective = mcollective^
 
@@ -19,7 +21,7 @@ main_collective = mcollective^
 
 libdir = !var_programfilesx86_dir!\MCollective\plugins^
 
-logfile = %ProgramData%\MCollective\var\log\server.log^
+logfile = %var_platform_program_data%\MCollective\var\log\server.log^
 
 loglevel = debug^
 
@@ -57,7 +59,7 @@ plugin.rabbitmq.pool.size = 1^
 
 factsource = facter^
 
-plugin.facter.facterlib = %ProgramData%\PuppetLabs\puppet\var\lib\facter^
+plugin.facter.facterlib = %var_platform_program_data%\PuppetLabs\puppet\var\lib\facter^
 
 ^
 
@@ -77,13 +79,13 @@ rpcaudit = 1^
 
 rpcauditprovider = logfile^
 
-plugin.rpcaudit.logfile = %ProgramData%\MCollective\var\log\audit.log^
+plugin.rpcaudit.logfile = %var_platform_program_data%\MCollective\var\log\audit.log^
 
 ^
 
-classesfile = %ProgramData%\PuppetLabs\puppet\var\state\classes.txt^
+classesfile = %var_platform_program_data%\PuppetLabs\puppet\var\state\classes.txt^
 
-> %ProgramData%\MCollective\etc\server.cfg
+> "%var_mcollective_etc_dir%server.cfg"
 )
 
 call "%var_puppet_base_dir%bin\environment.bat"

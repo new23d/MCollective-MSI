@@ -1,6 +1,12 @@
 ## basic config start
 
-var_cached_facts_file = ENV['ProgramData'] + '/PuppetLabs/facter/facts.d/facter_cef.yaml'
+if ENV.key('ProgramData')
+  var_platform_program_data = ENV['ProgramData']
+else
+  var_platform_program_data = ENV['ALLUSERSPROFILE'] + '\Application Data'
+end
+
+var_cached_facts_file = var_platform_program_data + '/PuppetLabs/facter/facts.d/facter_cef.yaml'
 
 var_expensive_facts_regex = [
   'network_.*',
