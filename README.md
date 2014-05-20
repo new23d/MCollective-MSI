@@ -32,15 +32,15 @@ You could download a package I have compiled from the _release_ tab above, or bu
 
 0. Install the WiX Toolset from https://wix.codeplex.com/releases/view/115492 .
 0. Check out this code.
-0. Extract the MCollective 2.5 tarball obtained from http://puppetlabs.com/misc/download-options .
+0. Extract the MCollective 2.5.1 tarball obtained from http://puppetlabs.com/misc/download-options into the _mco\_ directory.
 0. Get best versions of _mcollective-puppet-agent_, _mcollective-puppet-common_, _mcollective-service-agent_, _mcollective-service-common_ and _mcollective-facter-facts_ RPMs from http://yum.puppetlabs.com/el/6/products/x86_64/ . Extract them and merge contents at _usr\libexec\mcollective\mcollective_ of the extract into the _mco\plugins\mcollective_ directory.
 0. Change into the workspace directory: ```cd wks```
 0. Set path to WiX binaries: ```set PATH="%ProgramFiles(x86)%\WiX Toolset v3.8\bin";%PATH%```
 0. ```heat dir ..\mco -gg -sfrag -template fragment -ke -cg Tarball -dr ProgramFilesFolder_MCollective -srd -out files.wxs```
 0. ```candle files.wxs ..\wxs\mcollective.wxs```
-0. ```light -b ..\mco files.wixobj mcollective.wixobj -out ..\msi\mcollective-2.5.0002.msi```
+0. ```light -b ..\mco files.wixobj mcollective.wixobj -out ..\msi\mcollective-2.5.1001.msi```
 
 
 ## Versioning
 
-Due to idiosyncrasies and limitations of the Windows Installer around upgrades, the version numbers here reflect the upstream MCollective major and minor version number accurately. The patch number is then first multiplied by 1000 and my own release number added afterwards. Therefore, 2.5.0001 here means 2.5.0 release 1.
+Due to idiosyncrasies and limitations of the Windows Installer around upgrades, the version numbers here reflect the upstream MCollective major and minor version number accurately. The patch number is then first multiplied by 1000 and my own release number added afterwards. Therefore, 2.5.1001 here means 2.5.1 release 1.
