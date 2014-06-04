@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='utf-8'?>
 <Wix xmlns='http://schemas.microsoft.com/wix/2006/wi'>
-	<Product Name='MCollective' Version='2.5.1001' Id='*' UpgradeCode='D1B7E318-BED6-430C-9194-9427BEA29797' Language='1033' Codepage='1252' Manufacturer='new23d'>
+	<Product Name='MCollective' Version='2.5.1002' Id='*' UpgradeCode='D1B7E318-BED6-430C-9194-9427BEA29797' Language='1033' Codepage='1252' Manufacturer='new23d'>
 		<Package Id='*' Compressed='yes' InstallerVersion='300' />
 		<Media Id='1' Cabinet='mcollective' EmbedCab='yes' />
 
@@ -58,7 +58,7 @@
 			</Directory>
 		</Directory>
 
-		<CustomAction Id='FacterCEFScheduledTaskCreate' Directory='Opt' ExeCommand='schtasks /create /ru system /sc daily /tn Facter_CEF /tr "%ProgramFiles(x86)%\MCollective\opt\facter_cef.bat" /ri 10 /f' Execute='deferred' Impersonate='no' />
+		<CustomAction Id='FacterCEFScheduledTaskCreate' Directory='Opt' ExeCommand='schtasks /create /ru system /sc daily /tn Facter_CEF /tr "\"[ProgramFilesFolder]MCollective\opt\facter_cef.bat\"" /ri 10 /f' Execute='deferred' Impersonate='no' />
 		<CustomAction Id='FacterCEFScheduledTaskDelete' Directory='Log' ExeCommand='schtasks /delete /f /tn Facter_CEF' Execute='commit' Impersonate='no' />
 
 		<InstallExecuteSequence>

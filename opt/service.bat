@@ -1,17 +1,30 @@
 @echo off
 setlocal enabledelayedexpansion
 
-set var_puppet_key_name="HKEY_LOCAL_MACHINE\SOFTWARE\Wow6432Node\Puppet Labs\Puppet"
+if defined ProgramData (
+  set var_platform_program_data=%ProgramData%
+)
+
+if not defined ProgramData (
+  set var_platform_program_data=%ALLUSERSPROFILE%\Application Data
+)
+
+if defined ProgramFiles(x86) (
+  set "var_programfilesx86_dir=%ProgramFiles(x86)%"
+  set var_puppet_key_name="HKEY_LOCAL_MACHINE\SOFTWARE\Wow6432Node\Puppet Labs\Puppet"
+)
+
+if not defined ProgramFiles(x86) (
+  set var_programfilesx86_dir=%ProgramFiles%
+  set var_puppet_key_name="HKEY_LOCAL_MACHINE\SOFTWARE\Puppet Labs\Puppet"
+)
+
 set var_puppet_value_name="RememberedInstallDir"
 
 for /f "usebackq skip=1 tokens=1,2*" %%a in (`reg query %var_puppet_key_name% /v %var_puppet_value_name%`) do (set var_puppet_base_dir=%%c)
 
-if defined ProgramData (set var_platform_program_data=%ProgramData%) else (set var_platform_program_data=%ALLUSERSPROFILE%\Application Data)
-
-set var_mcollective_base_dir=%ProgramFiles(x86)%\MCollective\
+set var_mcollective_base_dir=!var_programfilesx86_dir!\MCollective\
 set var_mcollective_etc_dir=%var_platform_program_data%\MCollective\etc\
-
-set var_programfilesx86_dir=%ProgramFiles(x86)%
 
 if not exist "%var_mcollective_etc_dir%server.cfg" (
 echo ^

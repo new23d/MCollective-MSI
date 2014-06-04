@@ -38,9 +38,9 @@ You could download a package I have compiled from the _release_ tab above, or bu
 0. Set path to WiX binaries: ```set PATH="%ProgramFiles(x86)%\WiX Toolset v3.8\bin";%PATH%```
 0. ```heat dir ..\mco -gg -sfrag -template fragment -ke -cg Tarball -dr ProgramFilesFolder_MCollective -srd -out files.wxs```
 0. ```candle files.wxs ..\wxs\mcollective.wxs```
-0. ```light -b ..\mco files.wixobj mcollective.wixobj -out ..\msi\mcollective-2.5.1001.msi```
+0. ```light -b ..\mco files.wixobj mcollective.wixobj -out ..\msi\mcollective-2.5.1002.msi```
 
 
 ## Versioning
 
-Due to idiosyncrasies and limitations of the Windows Installer around upgrades, the version numbers here reflect the upstream MCollective major and minor version number accurately. The patch number is then first multiplied by 1000 and my own release number added afterwards. Therefore, 2.5.1001 here means 2.5.1 release 1.
+Due to idiosyncrasies and limitations of the Windows Installer around upgrades, the version numbers here reflect the upstream MCollective major and minor version number accurately. The patch number is then first multiplied by 1000 and my own release number added afterwards. Therefore, 2.5.1002 here means 2.5.1 release 2.
