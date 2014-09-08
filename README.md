@@ -22,7 +22,7 @@ You could download a package I have compiled from the _release_ tab above, or bu
 ## Known Issues
 
 
-0. If usage of _facter_ as a source of facts crashes with a debug message like ```in `rescue in block in get_fact' Failed to load facts: ThreadError: deadlock; recursive locking```, remove the ```%ProgramFiles(x86)%\Puppet Labs\Puppet\facter\lib\facter\processor.rb``` file.
+0. If usage of _facter_ as a source of facts crashes with a debug message like ```in `rescue in block in get_fact' Failed to load facts: ThreadError: deadlock; recursive locking```, remove the ```%ProgramFiles(x86)%\Puppet Labs\Puppet\facter\lib\facter\processor.rb``` file. This is https://tickets.puppetlabs.com/browse/FACT-482, fixed in facter 2.1.
 0. If _mco puppet runonce_ fails rather too quickly, edit ```%ProgramFiles(x86)%\MCollective\plugins\mcollective\agent\puppet.rb:12``` to find the _puppet_ command at its absolute path as per your environment. Example, change ```"puppet agent"``` to ```"c:/program files (x86)/puppet labs/puppet/bin/puppet.bat agent"```.
 0. The _Task Scheduler_ (```Schedule```) service must be running for the installation to succeed.
 
